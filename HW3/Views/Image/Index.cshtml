@@ -1,0 +1,27 @@
+﻿@model IEnumerable<HW3.Models.FileModel>
+
+@{
+    ViewBag.Title = "Image View";
+}
+
+<h2>Display All Image Types</h2>
+
+
+<div class=" container">
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 gallery">
+            <a href="~/Media/Images/@item.FileName" data-fancybox="gallery" data-caption="@item.FileName">
+                <img src="~/Media/Images/@item.FileName" controls width="300" height="300"/>
+            </a>
+            
+            <p>@item.FileName</p>
+            <button class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new { FileName = item.FileName })</button>
+            <button class="btn btn-success">@Html.ActionLink("Download", "Download", new { FileName = item.FileName })</button>
+            <br><br>
+        </div>
+
+    }
+</div>
+</div>

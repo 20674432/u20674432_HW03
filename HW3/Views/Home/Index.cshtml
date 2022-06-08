@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Home-Page";
+}
+
+<div>
+    @ViewBag.Message
+</div>
+<div>
+    <h2>MyMedia System</h2>
+    <p>What the does system and how it functions</p>
+</div>
+<div class="row jumbotron">
+    
+    <div class="col-md-8">
+        <h2>Description of The System</h2>
+        <p>The system will allow the user to select whether they want to upload document, image or video on to the system
+        and when the Submit button is clicked then the file is stored on the system. The user can navigate to the video,document or
+        image page to download the file or delect from the system which will remove it from the respective folders entirely.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Select option</h2>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+    <form>
+        <div class="form-group">
+            @Html.RadioButton("FileType", "Document")<span>Documents</span><br>
+        </div>
+        <div class="form-group">
+            @Html.RadioButton("FileType", "Image")<span>Images</span><br>
+        </div>
+        <div class="form-group form-check">
+            @Html.RadioButton("FileType", "Video")<span>Video</span><br>
+        </div>
+        <div class="form-group form-check">
+            <input type="file" name="file" id="file">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+        }
+        </div>
+
+</div>

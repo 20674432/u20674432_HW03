@@ -1,0 +1,25 @@
+﻿@model IEnumerable<HW3.Models.FileModel>
+
+
+<h2>Videos</h2>
+
+
+<div class=" container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-sm-4 gallery">
+                <a href="~/Media/Videos/@item.FileName" data-fancybox="gallery" data-type="video" data-caption="@item.FileName">
+                    <video controls width="300" height="300">
+                        <source src="~/Media/Videos/@item.FileName" type="video/mp4">
+                    </video>
+                </a>
+                <p>@item.FileName</p>
+                <button class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new { FileName = item.FileName })</button>
+                <button class="btn btn-success">@Html.ActionLink("Download", "Download", new { FileName = item.FileName })</button>
+            </div>
+
+        }
+    </div>
+    </div>
