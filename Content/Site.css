@@ -1,0 +1,38 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Define the container for the table with both horizontal and vertical scrollbars */
+
+.table-container {
+    width: 400px; /* Set the desired width for the container */
+
+    height: 400px; /* Set the desired height for the container */
+
+    overflow-x: auto; /* Enable horizontal scrolling */
+
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.table {
+    width: 100%;
+    border-radius: 25px; /* Adjust the border-radius value as needed */
+    border: 5px solid #ccc;/**/ /* Add a border to the table */
+}

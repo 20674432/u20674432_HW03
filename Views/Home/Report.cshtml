@@ -1,0 +1,91 @@
+﻿@using Homework03.Models
+@model Homework03.Models.LibraryVM
+
+<h2>Report</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Genres</h2>
+        <canvas id="genrePieChart"></canvas>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col">
+        </div>
+        <table class="table" style="width: 100%; border-radius: 50px; border: 1px;">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Num of Books Taken</th>
+            </tr>
+            @foreach (var student in ViewBag.TopStudents)
+            {
+                <tr>
+                    <td>@student.mystudentsList[0].name</td>
+                    <td>@student.mystudentsList[0].surname</td>
+                    <td>@student.numOfBookstaken[0]</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<br />
+<h2>Archive</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div style="height: 400px; overflow: auto;">
+            @*<table class="table table-hover">
+                <thead style="position: sticky; top: 0; background-color: lightgrey;">
+                    <tr>
+                        <th width="75%">FILE NAME</th>
+                        <th>DOWNLOAD</th>
+                        <th>DELETE</th>
+                    </tr>
+                </thead>
+                @foreach (var file in Model.)
+                 {
+                    <tr>
+                        <td>@file.FileName</td>
+                        <td class="t">@Html.ActionLink("Download", "DownloadFile", new { fileName = file.FileName }, new { @class = "btn btn-success btn-sm", style = "width: 150px;" })</td>
+                        <td class="t">@Html.ActionLink("Delete", "DeleteFile", new { fileName = file.FileName }, new { @class = "btn btn-danger btn-sm", style = "width: 150px;" })</td>
+                    </tr>
+                 }
+            </table>*@
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var data = @Html.Raw(ViewBag.TypeData);
+
+        var dataLabels = [];
+        var dataVals = [];
+        var dataColors = [];
+
+        for (var index in data) {
+            var type = data[index];
+            dataLabels.push(type.Name);
+            dataVals.push(type.NumOfBooks);
+
+            var colorR = Math.floor((Math.random() * 256));
+            var colorG = Math.floor((Math.random() * 256));
+            var colorB = Math.floor((Math.random() * 256));
+            dataColors.push("rgb(" + colorR + "," + colorG + "," + colorB + ")");
+        }
+
+        var genrePieChartContext = document.getElementById("genrePieChart").getContext("2d");
+        var genreChart = new Chart(genrePieChartContext, {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: dataVals,
+                    backgroundColor: dataColors
+                }],
+                labels: dataLabels
+            }
+        });
+    </script>
+}
